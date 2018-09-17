@@ -17,7 +17,10 @@ class SwipeCallback (private val recyclerView: RecyclerView, private val imageAd
             else -> "Oops."
         }
 
+        // Notify user with the answer
         Snackbar.make(recyclerView, answer, Snackbar.LENGTH_LONG).show()
+
+        // Notify that recyclerview item is changed to rerender the image
         imageAdapter.notifyItemChanged(viewHolder.adapterPosition)
     }
 

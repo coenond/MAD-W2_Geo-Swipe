@@ -8,6 +8,16 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var cityImages = ArrayList<CityImage>()
+    private val images = arrayOf(
+            "img1_yes_denmark",
+            "img2_no_canada",
+            "img3_no_bangladesh",
+            "img4_yes_kazachstan",
+            "img5_no_colombia",
+            "img6_yes_poland",
+            "img7_yes_malta",
+            "img8_no_thailand"
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,13 +28,12 @@ class MainActivity : AppCompatActivity() {
         ItemTouchHelper(SwipeCallback(rv_imagelist, rv_imagelist.adapter as ImageAdapter)).attachToRecyclerView(rv_imagelist)
     }
 
+    /**
+     * Extract all the data from the filenames to create the list.
+     */
     private fun fillImageArray() {
-        val images = arrayOf("img1_yes_denmark", "img2_no_canada", "img3_no_bangladesh",
-                "img4_yes_kazachstan", "img5_no_colombia", "img6_yes_poland",
-                "img7_yes_malta", "img8_no_thailand")
-
         for (image in images) {
-            var parts = image.split("_")
+            val parts = image.split("_")
             if (parts[0].startsWith("img")) {
                 cityImages.add(CityImage(
                         parts[1] == "yes",
@@ -36,6 +45,9 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+/**
+ * Class to hold all images.
+ */
 class CityImage(isInEurope: Boolean, cityName: String, resourceId: Int) {
     val inEurope = isInEurope
     val city = cityName

@@ -20,12 +20,16 @@ class ImageAdapter(val items : ArrayList<CityImage>, val context: Context) : Rec
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.list_item, parent, false))
     }
 
+    /**
+     * User the Bumptech.glide package for higher swipe performance
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val options = RequestOptions()
-        options.centerCrop()
-        Glide.with(context).load(items[position].resource).apply(options).into(holder.ivCity)
+        Glide.with(context).load(items[position].resource).into(holder.ivCity)
     }
 
+    /**
+     * Get the correct CityImage item from the recylcerview
+     */
     fun getItem(position: Int): CityImage {
         return items[position]
     }
