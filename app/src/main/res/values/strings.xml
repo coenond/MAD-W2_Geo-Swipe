@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MAD W2 Geo Swipe</string>
+    <string name="answer">Your answer is: %d</string>
 </resources>

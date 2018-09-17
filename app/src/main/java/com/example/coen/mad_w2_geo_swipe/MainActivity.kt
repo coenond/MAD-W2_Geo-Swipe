@@ -1,7 +1,9 @@
 package com.example.coen.mad_w2_geo_swipe
 
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,6 +14,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         fillImageArray()
+        rv_imagelist.adapter = ImageAdapter(cityImages, this)
+        ItemTouchHelper(SwipeCallback(rv_imagelist, rv_imagelist.adapter as ImageAdapter)).attachToRecyclerView(rv_imagelist)
     }
 
     private fun fillImageArray() {
@@ -25,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 cityImages.add(CityImage(
                         parts[1] == "yes",
                         parts[2],
-                        resources.getIdentifier("img1_yes_denmark", "drawable", packageName)
+                        resources.getIdentifier(image, "drawable", this.packageName)
                 ))
             }
         }
